@@ -21,7 +21,7 @@ jobs:
 
       - name: 查找目录
         id: find
-        run: echo "dir_path=$(bash script/find_dir.bash "${{ github.event.inputs.target }}")" >> "$GITHUB_OUTPUT"
+        run: echo "dir_path=$(bash script/find_dir.bash "${{ github.event.inputs.num }}")" >> "$GITHUB_OUTPUT"
 
       - name: 运行 Lua
         run: |
