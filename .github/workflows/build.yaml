@@ -1,0 +1,27 @@
+name: Lua run
+on:
+  workflow_dispatch:
+    inputs:
+      num:
+        description: 输入数字
+        type: number
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-lastest
+    steps:
+      - name: 获取仓库代码
+        uses: action/checkout@4
+      - name: 安装lua
+        uses: leafo/gh-actions-lua@v13
+        with:
+          luaVersion: "5.4"
+      - name: 查找目录
+        id: find
+        run: echo "dir_path=$(bash scripts/find_dir.sh "${{ github.event.inputs.target }}")" >> "$GITHUB_OUTPUT"
+
+      - name: 运行 Lua
+        run: |
+          cd "${{ steps.find.outputs.dir_path }}"
+          lua main.lua
