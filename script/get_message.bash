@@ -14,4 +14,4 @@ if [[ "$msg" =~ ^[0-9]+$ ]]; then
 else
     echo "gg"
     exit 1
-f1
+fi
