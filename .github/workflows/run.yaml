@@ -16,4 +16,15 @@ jobs:
         run: echo "message=${{ github.event.head_commit.message }}" >> "$GITHUB_OUTPUT"
 
       - name: 判断消息是数字并获取正确的文件路径
-        run: echo "$(bash script/get_message.bash ${{steps.get.outputs.message}})"
+        id: path
+        run: echo "filepath=$(bash script/get_message.bash ${{steps.get.outputs.message}})" >>"$GITHUB_OUTPUT"
+
+      - name: 安装lua
+        uses: leafo/gh-actions-lua@v13
+        with:
+          luaVersion: "5.4"
+
+      - name: 运行 Lua
+        run: |
+          cd "${{ steps.path.outputs.filepath }}"
+          lua main.lua
