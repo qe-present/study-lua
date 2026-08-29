@@ -15,5 +15,5 @@ jobs:
         id: get
         run: echo "message=${{ github.event.head_commit.message }}" >> "$GITHUB_OUTPUT"
 
-      - name: 判断消息是数字并确定文件存在
+      - name: 判断消息是数字并获取正确的文件路径
         run: echo "$(bash script/get_message.bash ${{steps.get.outputs.message}})"
