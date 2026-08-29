@@ -1,4 +1,4 @@
-name: Lua run
+name: Lua manual build
 on:
   workflow_dispatch:
     inputs:
@@ -8,7 +8,7 @@ on:
         required: true
 
 jobs:
-  build:
+  manual-build:
     runs-on: ubuntu-latest
     steps:
       - name: 获取仓库代码

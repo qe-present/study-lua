@@ -1,0 +1,15 @@
+name: lua automatic run
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 获取仓库代码
+        uses: actions/checkout@v4
+
+      - name: 获取消息
+        id: get
+        run: echo "message=${{ github.event.head_commit.message }}" >> "$GITHUB_OUTPUT"
+
+      - name: 打印消息
+        run: echo ${{ steps.get.outputs.message}}
